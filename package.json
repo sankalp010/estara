@@ -1,0 +1,21 @@
+{
+  "name": "estara",
+  "private": true,
+  "workspaces": [
+    "apps/web",
+    "apps/api",
+    "packages/shared"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n api,web -c green,cyan \"npm run dev -w @estara/api\" \"npm run dev -w @estara/web\"",
+    "build": "npm run build -w @estara/shared && npm run build -w @estara/api && npm run build -w @estara/web",
+    "typecheck": "npm run build -w @estara/shared && npm run typecheck -w @estara/api && npm run typecheck -w @estara/web"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "typescript": "^5.9.3"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
+  }
+}
